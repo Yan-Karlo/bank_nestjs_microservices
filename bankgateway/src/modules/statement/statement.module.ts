@@ -13,6 +13,6 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
     ]),
   ],
   controllers: [StatementController],
-  providers: [StatementService]
+  providers: [StatementService],
 })
 export class StatementModule {}

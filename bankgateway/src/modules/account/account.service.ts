@@ -21,7 +21,6 @@ export class AccountService {
 
   ping() {
     const response = this.client.send('ping', '-ping-');
-    console.log(response);
     return response;
   }
 }
