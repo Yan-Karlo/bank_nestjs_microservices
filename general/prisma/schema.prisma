@@ -10,14 +10,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Account{
+model Costumer{
   id  String @id  @default(uuid())
-  costumerId String
-  accountType String @map("AccountType")
-  balance Decimal @db.Decimal(9,2)
+  email String @db.VarChar(255) @unique
+  firstName  String @db.VarChar(25)
+  lastName String @db.VarChar(25)
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  @@map("accounts")
+  @@map("costumers")
 }
