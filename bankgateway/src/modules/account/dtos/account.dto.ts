@@ -1,14 +1,27 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { AccountType } from '../enums/accountType.enum';
 
-export type CreateAccountDTO = {
+export class CreateAccountDTO {
+  @ApiProperty()
   costumerId: string;
-  accountType: AccountType;
-  balance: number;
-};
 
-export type AccountDTO = {
-  id: string;
-  costumerId: string;
+  @ApiProperty({ description: 'An account can be either regular type or saving type' })
   accountType: AccountType;
+
+  @ApiProperty()
   balance: number;
-};
+}
+
+export class AccountDTO {
+  @ApiProperty()
+  id: string;
+
+  @ApiProperty()
+  costumerId: string;
+
+  @ApiProperty({ description: 'An account can be either regular type or saving type' })
+  accountType: AccountType;
+
+  @ApiProperty()
+  balance: number;
+}

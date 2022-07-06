@@ -9,3 +9,16 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Transaction{
+  id String @id @default(uuid())
+  accountId String
+  amount Decimal @db.Decimal(9,2)
+  eventDate DateTime @db.Date
+  meta String @db.VarChar(100)
+  type String @db.VarChar(15)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("transactions")
+}
