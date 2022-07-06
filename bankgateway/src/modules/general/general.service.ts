@@ -4,9 +4,14 @@ import {
   ClientProxyFactory,
   Transport,
 } from '@nestjs/microservices';
+import { Observable } from 'rxjs';
 
-import { CreateCustomerDTO, Customer } from './dtos/customer.dto';
-import { LoginDTO } from './dtos/login.dto';
+import {
+  CreateCustomerDTO,
+  ResponseCustomerDTO,
+  CustomerDTO,
+} from './dtos/customer.dto';
+import { LoginDTO, ResponseLoginDTO } from './dtos/login.dto';
 
 @Injectable()
 export class GeneralService {
@@ -27,23 +32,23 @@ export class GeneralService {
     return response;
   }
 
-  createCustomer(customer: CreateCustomerDTO) {
+  createCustomer(customer: CreateCustomerDTO): Observable<ResponseCustomerDTO> {
     return this.client.send('createCustomer', customer);
   }
 
-  updateCustomer(customer: Customer) {
+  updateCustomer(customer: CustomerDTO): Observable<ResponseCustomerDTO> {
     return this.client.send('updateCustomer', customer);
   }
 
-  findCustomerById(id: string) {
+  findCustomerById(id: string): Observable<ResponseCustomerDTO> {
     return this.client.send('findCustomerById', id);
   }
 
-  deleteCustomer(id: string) {
+  deleteCustomer(id: string): Observable<ResponseCustomerDTO> {
     return this.client.send('deleteCustomer', id);
   }
 
-  login(login: LoginDTO) {
+  login(login: LoginDTO): Observable<ResponseLoginDTO> {
     return this.client.send('login', login);
   }
 }
