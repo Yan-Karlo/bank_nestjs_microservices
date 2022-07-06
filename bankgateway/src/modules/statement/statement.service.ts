@@ -4,6 +4,8 @@ import {
   ClientProxyFactory,
   Transport,
 } from '@nestjs/microservices';
+import { CreateTransactionDTO } from './dtos/transaction.dto';
+import { StatementFilterDTO } from './dtos/statementFilter';
 
 @Injectable()
 export class StatementService {
@@ -23,5 +25,13 @@ export class StatementService {
     const response = this.client.send('ping', '-ping-');
     console.log(response);
     return response;
+  }
+
+  doTransaction(transaction: CreateTransactionDTO) {
+    return this.client.send('doTransaction', transaction);
+  }
+
+  getStatement(filter: StatementFilterDTO) {
+    return this.client.send('getStatement', filter);
   }
 }
