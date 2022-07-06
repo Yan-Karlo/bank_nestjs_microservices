@@ -1,12 +1,18 @@
-export type Customer = {
+export class CustomerDTO {
   id: string;
   email: string;
-  firstName: string;
-  lastName: string;
-};
+  name: string;
+}
 
-export type CreateCustomerDTO = {
+export class ResponseCustomerDTO {
+  id: string;
   email: string;
-  firstName: string;
-  lastName: string;
-};
+  name: string;
+  createdAt: Date;
+  updatedAT: Date;
+}
+
+export class CreateCustomerDTO {
+  email: string;
+  name: string;
+}
