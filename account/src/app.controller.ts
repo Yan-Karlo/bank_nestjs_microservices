@@ -8,28 +8,28 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @MessagePattern('ping')
-  ping(data: any) {
+  ping(data: any): string {
     console.log('Account was ping');
     return this.appService.ping(data);
   }
 
   @MessagePattern('createAccount')
-  createAccount(account: CreateAccountDTO) {
+  createAccount(account: CreateAccountDTO): AccountDTO {
     return this.appService.createAccount(account);
   }
 
   @MessagePattern('updateAccount')
-  updateAccount(account: AccountDTO) {
+  updateAccount(account: AccountDTO): AccountDTO {
     return this.appService.updateAccount(account);
   }
 
   @MessagePattern('findAccountById')
-  findAccountById(id: string) {
+  findAccountById(id: string): AccountDTO {
     return this.appService.findAccountById(id);
   }
 
   @MessagePattern('deleteAccount')
-  deleteAccount(id: string) {
+  deleteAccount(id: string): AccountDTO {
     return this.appService.deleteAccount(id);
   }
 }

@@ -1,4 +1,4 @@
 export enum AccountType {
-  regular = 'regular',
-  saving = 'saving',
+  Regular = 'regular',
+  Saving = 'saving',
 }
