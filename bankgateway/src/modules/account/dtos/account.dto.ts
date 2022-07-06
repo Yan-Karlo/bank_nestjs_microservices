@@ -24,4 +24,10 @@ export class AccountDTO {
 
   @ApiProperty()
   balance: number;
+
+  @ApiProperty()
+  createdAt: Date;
+
+  @ApiProperty()
+  updatedAt: Date;
 }

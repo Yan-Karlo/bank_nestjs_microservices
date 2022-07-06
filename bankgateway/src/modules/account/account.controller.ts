@@ -11,6 +11,7 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AccountService } from './account.service';
 import { AccountDTO, CreateAccountDTO } from './dtos/account.dto';
 import { IndexAccountSwagger } from './swagger/index-account.swagger';
+import { Observable } from 'rxjs';
 
 @Controller('accounts')
 @ApiTags('Accounts')
@@ -20,8 +21,8 @@ export class AccountController {
   @Get('ping')
   @ApiOperation({ summary: 'It is a dummy enpoint just for connection tests' })
   @ApiResponse({ status: 200, description: 'Returns a dummy pong word' })
-  async ping() {
-    return await this.accountService.ping();
+  ping(): Observable<string> {
+    return this.accountService.ping();
   }
 
   @Post()
@@ -33,7 +34,7 @@ export class AccountController {
   })
   @ApiResponse({ status: 400, description: 'Invalid parameters' })
   @ApiResponse({ status: 500, description: 'Internal server error' })
-  createAccount(@Body() account: CreateAccountDTO) {
+  createAccount(@Body() account: CreateAccountDTO): Observable<AccountDTO> {
     return this.accountService.createAccount(account);
   }
 
@@ -47,7 +48,7 @@ export class AccountController {
   @ApiResponse({ status: 400, description: 'Invalid parameters' })
   @ApiResponse({ status: 404, description: 'Bank account not found' })
   @ApiResponse({ status: 500, description: 'Internal server error' })
-  updateAccount(@Body() account: AccountDTO) {
+  updateAccount(@Body() account: AccountDTO): Observable<AccountDTO> {
     return this.accountService.updateAccount(account);
   }
 
@@ -61,7 +62,7 @@ export class AccountController {
   @ApiResponse({ status: 400, description: 'Invalid parameters' })
   @ApiResponse({ status: 404, description: 'Bank account not found' })
   @ApiResponse({ status: 500, description: 'Internal server error' })
-  findAccountById(@Param('id') id: string) {
+  findAccountById(@Param('id') id: string): Observable<AccountDTO> {
     return this.accountService.findAccountById(id);
   }
 
@@ -74,7 +75,7 @@ export class AccountController {
   @ApiResponse({ status: 400, description: 'Invalid parameters' })
   @ApiResponse({ status: 404, description: 'Bank account not found' })
   @ApiResponse({ status: 500, description: 'Internal server error' })
-  deleteAccount(@Param('id') id: string) {
+  deleteAccount(@Param('id') id: string): Observable<AccountDTO> {
     return this.accountService.deleteAccount(id);
   }
 }
