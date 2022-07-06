@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { CreateTransactionDTO } from './dtos/transaction.dto';
 import { TransactionType } from './enums/transactionType.enum';
 import { StatementFilter } from './dtos/statementFilter';
+import { CreateTransactionDTO } from './dtos/transaction.dto';
 
 @Injectable()
 export class AppService {

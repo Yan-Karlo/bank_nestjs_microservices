@@ -25,6 +25,20 @@ export class AccountController {
     return this.accountService.ping();
   }
 
+  @Get(':id')
+  @ApiOperation({ summary: 'Gets information of a bank account by its ID' })
+  @ApiResponse({
+    status: 200,
+    description: 'The update was done successfully',
+    type: IndexAccountSwagger,
+  })
+  @ApiResponse({ status: 400, description: 'Invalid parameters' })
+  @ApiResponse({ status: 404, description: 'Bank account not found' })
+  @ApiResponse({ status: 500, description: 'Internal server error' })
+  findAccountById(@Param('id') id: string): Observable<AccountDTO> {
+    return this.accountService.findAccountById(id);
+  }
+
   @Post()
   @ApiOperation({ summary: 'Creates a bank account' })
   @ApiResponse({
@@ -50,20 +64,6 @@ export class AccountController {
   @ApiResponse({ status: 500, description: 'Internal server error' })
   updateAccount(@Body() account: AccountDTO): Observable<AccountDTO> {
     return this.accountService.updateAccount(account);
-  }
-
-  @Get(':id')
-  @ApiOperation({ summary: 'Gets information of a bank account by its ID' })
-  @ApiResponse({
-    status: 200,
-    description: 'The update was done successfully',
-    type: IndexAccountSwagger,
-  })
-  @ApiResponse({ status: 400, description: 'Invalid parameters' })
-  @ApiResponse({ status: 404, description: 'Bank account not found' })
-  @ApiResponse({ status: 500, description: 'Internal server error' })
-  findAccountById(@Param('id') id: string): Observable<AccountDTO> {
-    return this.accountService.findAccountById(id);
   }
 
   @Delete(':id')

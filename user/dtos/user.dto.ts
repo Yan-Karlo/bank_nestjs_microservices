@@ -1,10 +1,10 @@
-export class CustomerDTO {
+export class UserDTO {
   id: string;
   email: string;
   name: string;
 }
 
-export class ResponseCustomerDTO {
+export class ResponseUserDTO {
   id: string;
   email: string;
   name: string;
@@ -12,7 +12,7 @@ export class ResponseCustomerDTO {
   updatedAT: Date;
 }
 
-export class CreateCustomerDTO {
+export class CreateUserDTO {
   email: string;
   name: string;
 }

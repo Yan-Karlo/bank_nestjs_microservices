@@ -12,7 +12,7 @@ datasource db {
 
 model Account{
   id  String @id  @default(uuid())
-  costumerId String
+  userId String
   accountType String @map("AccountType")
   balance Decimal @db.Decimal(9,2)
 
